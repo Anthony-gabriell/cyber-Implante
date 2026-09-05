@@ -3,13 +3,13 @@ package com.atech.CyberImplante.models;
 public class Usuario {
     private int idUsuario;
     private String nome;
-    private int nivel;
 
-    public Usuario (int idUsuario, String nome, int nivel) {
+    public Usuario (int idUsuario, String nome) {
         this.idUsuario = idUsuario;
         this.nome = nome;
-        this.nivel = nivel;
     }
+
+    NivelUsuario[] values = NivelUsuario.values();
 
     // JPA/spring para o banco de dados exige que  classe tenha um construtor vazio
     public Usuario(){}
@@ -23,9 +23,10 @@ public class Usuario {
         return nome;
     }
 
-    public int getNivel() {
-        return nivel;
+    public NivelUsuario[] getValues() {
+        return values;
     }
+
     // setters seletores
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
@@ -35,7 +36,7 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public void setValues(NivelUsuario[] values) {
+        this.values = values;
     }
 }
