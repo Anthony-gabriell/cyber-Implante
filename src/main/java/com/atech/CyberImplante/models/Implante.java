@@ -1,6 +1,15 @@
 package com.atech.CyberImplante.models;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+
+@Entity // define que esta classe será uma tabela no banco de dados
 public class Implante {
+
+    @Id // define a chave primária
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // o banco gera o ID automaticament
     private int idImplante;
     private String nome;
     private String categoria;
@@ -18,7 +27,6 @@ public class Implante {
     public Implante(){}
 
     // getters coletores setters seletores
-
     public int getIdImplante() {
         return idImplante;
     }
