@@ -4,27 +4,26 @@ public class Implante {
     private int idImplante;
     private String nome;
     private String categoria;
-    private String parteDoCorpo;;
+    private String parteDoCorpo;
+    private NivelImplante nivel;
 
-    NivelImplante[] values = NivelImplante.values();
-
-    public Implante (int idImplante, String nome, String categoria, String parteDoCorpo) {
+    public Implante (int idImplante, String nome, String categoria, String parteDoCorpo, NivelImplante nivel) {
         this.idImplante = idImplante;
         this.nome = nome;
         this.categoria = categoria;
         this.parteDoCorpo = parteDoCorpo;
+        this.nivel = nivel;
     }
     // JPA/spring para o banco de dados exige que  classe tenha um construtor vazio
     public Implante(){}
 
     // getters coletores setters seletores
-    public int getIdImplante() {
 
+    public int getIdImplante() {
         return idImplante;
     }
 
     public void setIdImplante(int idImplante) {
-
         this.idImplante = idImplante;
     }
 
@@ -52,11 +51,11 @@ public class Implante {
         this.parteDoCorpo = parteDoCorpo;
     }
 
-    public NivelImplante[] getValues() {
-        return values;
+    public NivelImplante getNivel() {
+        return nivel;
     }
 
-    public void setValues(NivelImplante[] values) {
-        this.values = values;
+    public void setNivel(NivelImplante nivel) {
+        this.nivel = nivel;
     }
 }

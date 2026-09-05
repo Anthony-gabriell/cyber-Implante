@@ -3,16 +3,17 @@ package com.atech.CyberImplante.models;
 public class Usuario {
     private int idUsuario;
     private String nome;
+    private NivelUsuario nivel; // enum fica como se fosse um tipo (string ou int)
 
-    public Usuario (int idUsuario, String nome) {
+    public Usuario(int idUsuario, String nome, NivelUsuario nivel) {
         this.idUsuario = idUsuario;
         this.nome = nome;
+        this.nivel = nivel; // atribuimos o enum diretamente
     }
 
-    NivelUsuario[] values = NivelUsuario.values();
-
     // JPA/spring para o banco de dados exige que  classe tenha um construtor vazio
-    public Usuario(){}
+    public Usuario() {
+    }
 
     // getters coletores
     public int getIdUsuario() {
@@ -23,8 +24,8 @@ public class Usuario {
         return nome;
     }
 
-    public NivelUsuario[] getValues() {
-        return values;
+    public NivelUsuario getNivel() {
+        return nivel;
     }
 
     // setters seletores
@@ -36,7 +37,29 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public void setValues(NivelUsuario[] values) {
-        this.values = values;
+    public void setNivel(NivelUsuario nivel) {
+        this.nivel = nivel;
+    }
+
+    // retornar um boolean
+    public boolean validarNome(String nome) {
+        if (nome.isEmpty()) return false; // nome nao pode ficar vazio
+        if (nome.length() < 4) return false; // nome nao pode menos que 4 caracteres
+        if (nome.matches("\\d+")) return false; // nome nao pode ser somente numertos
+        return true;
+    }
+
+    // recebe o nivel do implante, valida com o nivel do usuario
+    public boolean validarNivel(NivelImplante nivelImplante) {
+        switch (this.nivel) {
+            case S:
+                return true; // nivel S pode acessar qualquer coisa
+            case A:
+                return nivelImplante != NivelImplante.S; // nivel A acessa tudo menos S
+            case B:
+                return nivelImplante == NivelImplante.B;// nivel B acessa so B
+            default:
+                return false;
+        }
     }
 }
