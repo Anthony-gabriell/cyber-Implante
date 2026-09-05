@@ -1,4 +1,4 @@
 package com.atech.CyberImplante.repository;
 
-public interface ImplanteRepository {
+public interface UsuarioRepository {
 }

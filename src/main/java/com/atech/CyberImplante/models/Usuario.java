@@ -9,11 +9,11 @@ public class Usuario {
 
     @Id // define a chave primária
     @GeneratedValue(strategy = GenerationType.IDENTITY) // o banco gera o ID automaticament
-    private int idUsuario;
+    private Long idUsuario;
     private String nome;
     private NivelUsuario nivel; // enum fica como se fosse um tipo (string ou int)
 
-    public Usuario(int idUsuario, String nome, NivelUsuario nivel) {
+    public Usuario(Long idUsuario, String nome, NivelUsuario nivel) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.nivel = nivel; // atribuimos o enum diretamente
@@ -24,7 +24,7 @@ public class Usuario {
     }
 
     // getters coletores
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
@@ -37,7 +37,7 @@ public class Usuario {
     }
 
     // setters seletores
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

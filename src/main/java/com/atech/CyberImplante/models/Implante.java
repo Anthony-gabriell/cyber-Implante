@@ -10,13 +10,13 @@ public class Implante {
 
     @Id // define a chave primária
     @GeneratedValue(strategy = GenerationType.IDENTITY) // o banco gera o ID automaticament
-    private int idImplante;
+    private Long idImplante;
     private String nome;
     private String categoria;
     private String parteDoCorpo;
     private NivelImplante nivel;
 
-    public Implante (int idImplante, String nome, String categoria, String parteDoCorpo, NivelImplante nivel) {
+    public Implante (Long idImplante, String nome, String categoria, String parteDoCorpo, NivelImplante nivel) {
         this.idImplante = idImplante;
         this.nome = nome;
         this.categoria = categoria;
@@ -27,11 +27,11 @@ public class Implante {
     public Implante(){}
 
     // getters coletores setters seletores
-    public int getIdImplante() {
+    public Long getIdImplante() {
         return idImplante;
     }
 
-    public void setIdImplante(int idImplante) {
+    public void setIdImplante(Long idImplante) {
         this.idImplante = idImplante;
     }
 
