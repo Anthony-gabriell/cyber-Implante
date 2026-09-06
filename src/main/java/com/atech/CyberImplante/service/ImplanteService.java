@@ -50,6 +50,15 @@ public class ImplanteService {
 
     }
 
+    // metodo para remover implantes
+    public void removerImplante(Long idImplante, Long idUsuario){
+        // precisamos validar s eo id exsite no banco
+        if (!implanteRepository.existsById(idImplante) & !usuarioRepository.existsById(idUsuario)){
+            throw new RuntimeException("Opção invalida!");
+        }
+        implanteRepository.deleteById(idImplante);
+    }
+
 
 
 
