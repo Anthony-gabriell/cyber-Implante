@@ -26,7 +26,7 @@ public class ImplanteService {
                 .orElseThrow(() -> new RuntimeException("Implante não encontrado")); // se vazio lanca exceção em vez de retornar null
 
         Usuario usuario = usuarioRepository.findById(idUsuario) // busca o usuaruo no banco retorna um optional um objeto que pode ou não ter valor.
-                .orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado")); // se nao encontrou, lança exceção, se encontrou retorna o usuario
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado")); // se nao encontrou, lança exceção, se encontrou retorna o usuario
 
       boolean temAcesso = usuario.validarNivel(implante.getNivel()); // delega a validação ao próprio usuario
         if (!temAcesso){
@@ -42,10 +42,6 @@ public class ImplanteService {
         // usamos findall() que vai no banco e busca tudo
         List<Implante> todosImplantes = implanteRepository.findAll();
 
-        // for-each para cada tarefa dentro da lista
-        for (Implante implante : todosImplantes){
-            System.out.println(implante.getIdImplante() + " - " + implante.getNome() + " - " + implante.getCategoria() + " - " + implante.getParteDoCorpo());
-        }
         return todosImplantes;
 
     }
@@ -53,7 +49,7 @@ public class ImplanteService {
     // metodo para remover implantes
     public void removerImplante(Long idImplante, Long idUsuario){
         // precisamos validar s eo id exsite no banco
-        if (!implanteRepository.existsById(idImplante) & !usuarioRepository.existsById(idUsuario)){
+        if (!implanteRepository.existsById(idImplante) || !usuarioRepository.existsById(idUsuario)){
             throw new RuntimeException("Opção invalida!");
         }
         implanteRepository.deleteById(idImplante);
