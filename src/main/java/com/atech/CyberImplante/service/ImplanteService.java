@@ -18,13 +18,14 @@ public class ImplanteService {
     private final ImplantesUsuarioRepository implantesUsuarioRepository;
 
     // injeção de dependencia via construtor (alterantiva @Autowired)
-    public ImplanteService(ImplanteRepository implanteRepository, UsuarioRepository usuarioRepository, ImplantesUsuarioRepository implantesUsuarioRepository){
+    public ImplanteService(ImplanteRepository implanteRepository, UsuarioRepository usuarioRepository, ImplantesUsuarioRepository implantesUsuarioRepository) {
         this.implanteRepository = implanteRepository;
         this.usuarioRepository = usuarioRepository;
         this.implantesUsuarioRepository = implantesUsuarioRepository;
     }
+
     // metodo para instalar os implantes
-    public ImplantesUsuario instalarImplante(Long idImplante, Long idUsuario){
+    public ImplantesUsuario instalarImplante(Long idImplante, Long idUsuario) {
 
         Implante implante = implanteRepository.findById(idImplante) // busca o implante no banco. retorna um optional um objeto que pode ou não ter valor.
                 .orElseThrow(() -> new RuntimeException("Implante não encontrado")); // se vazio lanca exceção em vez de retornar null
@@ -32,8 +33,8 @@ public class ImplanteService {
         Usuario usuario = usuarioRepository.findById(idUsuario) // busca o usuaruo no banco retorna um optional um objeto que pode ou não ter valor.
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado")); // se nao encontrou, lança exceção, se encontrou retorna o usuario
 
-      boolean temAcesso = usuario.validarNivel(implante.getNivel()); // delega a validação ao próprio usuario
-        if (!temAcesso){
+        boolean temAcesso = usuario.validarNivel(implante.getNivel()); // delega a validação ao próprio usuario
+        if (!temAcesso) {
             throw new RuntimeException("Usuário não tem nível suficiente"); // persiste no banco e retorna o implante salvo com ID gerado
         }
 
@@ -44,7 +45,7 @@ public class ImplanteService {
     }
 
     // metodo para listar implante
-    public List<Implante> listarImplante(){
+    public List<Implante> listarImplante() {
         // usamos findall() que vai no banco e busca tudo
         List<Implante> todosImplantes = implanteRepository.findAll();
 
@@ -53,15 +54,19 @@ public class ImplanteService {
     }
 
     // metodo para remover implantes
-    public void removerImplante(Long idImplante, Long idUsuario){
-        // precisamos validar s eo id exsite no banco
-        if (!implanteRepository.existsById(idImplante) || !usuarioRepository.existsById(idUsuario)){
-            throw new RuntimeException("Opção invalida!");
-        }
-        implanteRepository.deleteById(idImplante);
+    public void removerImplante(Long idImplante, Long idUsuario) {
+        Implante implante = implanteRepository.findById(idImplante) // busca o implante no banco. retorna um optional um objeto que pode ou não ter valor.
+                .orElseThrow(() -> new RuntimeException("Implante não encontrado")); // se vazio lanca exceção em vez de retornar null
+
+        Usuario usuario = usuarioRepository.findById(idUsuario) // busca o usuaruo no banco retorna um optional um objeto que pode ou não ter valor.
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+
+        // CORREÇÃO: Busca o vínculo real no banco de dados em vez de dar 'new'
+        ImplantesUsuario instalacao = implantesUsuarioRepository.findByUsuarioAndImplante(usuario, implante)
+                .orElseThrow(() -> new RuntimeException("Vínculo entre usuário e implante não encontrado"));
+
+        // Agora sim o Hibernate conhece o objeto e vai deletar a linha correta!
+        implantesUsuarioRepository.delete(instalacao);
+
     }
-
-
-
-
 }
