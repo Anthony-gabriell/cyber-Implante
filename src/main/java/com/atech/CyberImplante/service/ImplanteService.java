@@ -61,7 +61,7 @@ public class ImplanteService {
         Usuario usuario = usuarioRepository.findById(idUsuario) // busca o usuaruo no banco retorna um optional um objeto que pode ou não ter valor.
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
-        // CORREÇÃO: Busca o vínculo real no banco de dados em vez de dar 'new'
+        // busca o vínculo real no banco de dados em vez de dar 'new'
         ImplantesUsuario instalacao = implantesUsuarioRepository.findByUsuarioAndImplante(usuario, implante)
                 .orElseThrow(() -> new RuntimeException("Vínculo entre usuário e implante não encontrado"));
 
