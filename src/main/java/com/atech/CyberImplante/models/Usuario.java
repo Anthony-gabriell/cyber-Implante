@@ -1,16 +1,14 @@
 package com.atech.CyberImplante.models;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity // define que esta classe será uma tabela no banco de dados
 public class Usuario {
 
     @Id // define a chave primária
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // o banco gera o ID automaticament
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// o banco gera o ID automaticament
     private Long idUsuario;
     private String nome;
+    @Enumerated(EnumType.STRING)
     private NivelUsuario nivel; // enum fica como se fosse um tipo (string ou int)
 
     public Usuario(Long idUsuario, String nome, NivelUsuario nivel) {
@@ -18,6 +16,7 @@ public class Usuario {
         this.nome = nome;
         this.nivel = nivel; // atribuimos o enum diretamente
     }
+
 
     // JPA/spring para o banco de dados exige que  classe tenha um construtor vazio
     public Usuario() {
@@ -70,4 +69,4 @@ public class Usuario {
                 return false;
         }
     }
-}
+    }

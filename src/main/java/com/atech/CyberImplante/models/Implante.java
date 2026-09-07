@@ -1,30 +1,31 @@
 package com.atech.CyberImplante.models;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity // define que esta classe será uma tabela no banco de dados
 public class Implante {
 
     @Id // define a chave primária
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // o banco gera o ID automaticament
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// o banco gera o ID automaticament
     private Long idImplante;
     private String nome;
     private String categoria;
     private String parteDoCorpo;
+    @Enumerated(EnumType.STRING)
     private NivelImplante nivel;
 
-    public Implante (Long idImplante, String nome, String categoria, String parteDoCorpo, NivelImplante nivel) {
+    public Implante(Long idImplante, String nome, String categoria, String parteDoCorpo, NivelImplante nivel) {
         this.idImplante = idImplante;
         this.nome = nome;
         this.categoria = categoria;
         this.parteDoCorpo = parteDoCorpo;
         this.nivel = nivel;
     }
+
+
     // JPA/spring para o banco de dados exige que  classe tenha um construtor vazio
-    public Implante(){}
+    public Implante() {
+    }
 
     // getters coletores setters seletores
     public Long getIdImplante() {
@@ -66,4 +67,7 @@ public class Implante {
     public void setNivel(NivelImplante nivel) {
         this.nivel = nivel;
     }
+
 }
+
+
