@@ -1,6 +1,5 @@
 package com.atech.CyberImplante.controller;
 
-
 import com.atech.CyberImplante.models.Implante;
 import com.atech.CyberImplante.service.ImplanteService;
 import org.springframework.http.ResponseEntity;
