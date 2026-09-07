@@ -1,8 +1,10 @@
 package com.atech.CyberImplante.service;
 
 import com.atech.CyberImplante.models.Implante;
+import com.atech.CyberImplante.models.ImplantesUsuario;
 import com.atech.CyberImplante.models.Usuario;
 import com.atech.CyberImplante.repository.ImplanteRepository;
+import com.atech.CyberImplante.repository.ImplantesUsuarioRepository;
 import com.atech.CyberImplante.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,14 +15,16 @@ public class ImplanteService {
     // final para garantir que a depedencia nao mude apos ser injetada
     private final ImplanteRepository implanteRepository;
     private final UsuarioRepository usuarioRepository;
+    private final ImplantesUsuarioRepository implantesUsuarioRepository;
 
     // injeção de dependencia via construtor (alterantiva @Autowired)
-    public ImplanteService(ImplanteRepository implanteRepository, UsuarioRepository usuarioRepository){
+    public ImplanteService(ImplanteRepository implanteRepository, UsuarioRepository usuarioRepository, ImplantesUsuarioRepository implantesUsuarioRepository){
         this.implanteRepository = implanteRepository;
         this.usuarioRepository = usuarioRepository;
+        this.implantesUsuarioRepository = implantesUsuarioRepository;
     }
     // metodo para instalar os implantes
-    public Implante instalarImplante(Long idImplante, Long idUsuario){
+    public ImplantesUsuario instalarImplante(Long idImplante, Long idUsuario){
 
         Implante implante = implanteRepository.findById(idImplante) // busca o implante no banco. retorna um optional um objeto que pode ou não ter valor.
                 .orElseThrow(() -> new RuntimeException("Implante não encontrado")); // se vazio lanca exceção em vez de retornar null
@@ -33,7 +37,9 @@ public class ImplanteService {
             throw new RuntimeException("Usuário não tem nível suficiente"); // persiste no banco e retorna o implante salvo com ID gerado
         }
 
-        return implanteRepository.save(implante);
+        // estamos criando a juncao dos dois itens
+        ImplantesUsuario instalacao = new ImplantesUsuario(usuario, implante);
+        return implantesUsuarioRepository.save(instalacao);
 
     }
 

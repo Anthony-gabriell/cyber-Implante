@@ -1,6 +1,7 @@
 package com.atech.CyberImplante.controller;
 
 import com.atech.CyberImplante.models.Implante;
+import com.atech.CyberImplante.models.ImplantesUsuario;
 import com.atech.CyberImplante.service.ImplanteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class ImplanteController {
     }
 
     @PostMapping("/{idImplante}/usuario/{idUsuario}/instalar")// post para criar um implante e id
-    public ResponseEntity<Implante> instalarImplante(@PathVariable Long idImplante, @PathVariable Long idUsuario){ // pathvariable extrai o id da URL
-        Implante instalado = implanteService.instalarImplante(idImplante, idUsuario);
+    public ResponseEntity<ImplantesUsuario> instalarImplante(@PathVariable Long idImplante, @PathVariable Long idUsuario){ // pathvariable extrai o id da URL
+        ImplantesUsuario instalado = implanteService.instalarImplante(idImplante, idUsuario);
         return ResponseEntity.status(201).body(instalado);
     }
 

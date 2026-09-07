@@ -19,6 +19,11 @@ public class ImplantesUsuario {
         this.implante = implante;
     }
 
+    public ImplantesUsuario(Usuario usuario, Implante implante) {
+        this.usuario = usuario;
+        this.implante = implante;
+    }
+
     public ImplantesUsuario(){};
 
     public Implante getImplante() {
