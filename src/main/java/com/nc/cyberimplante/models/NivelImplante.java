@@ -1,4 +1,4 @@
-package com.atech.CyberImplante.models;
+package com.nc.cyberimplante.models;
 
 public enum NivelImplante {
     S("S"),

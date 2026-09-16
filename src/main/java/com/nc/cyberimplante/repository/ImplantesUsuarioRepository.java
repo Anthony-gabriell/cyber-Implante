@@ -1,8 +1,8 @@
-package com.atech.CyberImplante.repository;
+package com.nc.cyberimplante.repository;
 
-import com.atech.CyberImplante.models.Implante;
-import com.atech.CyberImplante.models.ImplantesUsuario;
-import com.atech.CyberImplante.models.Usuario;
+import com.nc.cyberimplante.models.Implante;
+import com.nc.cyberimplante.models.ImplantesUsuario;
+import com.nc.cyberimplante.models.Usuario;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

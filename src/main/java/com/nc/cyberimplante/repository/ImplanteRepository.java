@@ -1,7 +1,7 @@
-package com.atech.CyberImplante.repository;
+package com.nc.cyberimplante.repository;
 
 // Abaixo eu tengo os Imports as anotações do banco de dados
-import com.atech.CyberImplante.models.Implante;
+import com.nc.cyberimplante.models.Implante;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

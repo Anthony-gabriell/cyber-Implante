@@ -1,7 +1,7 @@
-package com.atech.CyberImplante.controller;
+package com.nc.cyberimplante.controller;
 
-import com.atech.CyberImplante.models.Usuario;
-import com.atech.CyberImplante.service.UsuarioService;
+import com.nc.cyberimplante.models.Usuario;
+import com.nc.cyberimplante.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

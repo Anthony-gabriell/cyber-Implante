@@ -1,4 +1,4 @@
-package com.atech.CyberImplante.models;
+package com.nc.cyberimplante.models;
 import jakarta.persistence.*;
 
 @Entity // define que esta classe será uma tabela no banco de dados

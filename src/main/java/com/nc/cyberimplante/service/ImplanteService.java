@@ -1,11 +1,11 @@
-package com.atech.CyberImplante.service;
+package com.nc.cyberimplante.service;
 
-import com.atech.CyberImplante.models.Implante;
-import com.atech.CyberImplante.models.ImplantesUsuario;
-import com.atech.CyberImplante.models.Usuario;
-import com.atech.CyberImplante.repository.ImplanteRepository;
-import com.atech.CyberImplante.repository.ImplantesUsuarioRepository;
-import com.atech.CyberImplante.repository.UsuarioRepository;
+import com.nc.cyberimplante.models.Implante;
+import com.nc.cyberimplante.models.ImplantesUsuario;
+import com.nc.cyberimplante.models.Usuario;
+import com.nc.cyberimplante.repository.ImplanteRepository;
+import com.nc.cyberimplante.repository.ImplantesUsuarioRepository;
+import com.nc.cyberimplante.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
